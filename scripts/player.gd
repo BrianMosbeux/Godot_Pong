@@ -60,6 +60,7 @@ func _physics_process(delta):
 	player_move_input()
 	velocity = direction * speed
 	position += velocity * delta
+	position = position.clamp(Vector2.ZERO, screen_size)
 
 func _unhandled_input(event):
 	#print(event)

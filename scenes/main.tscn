@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfon1n72in16y"]
+[gd_scene load_steps=7 format=3 uid="uid://bfon1n72in16y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2o25x"]
 [ext_resource type="PackedScene" uid="uid://bggigkxxch4us" path="res://scenes/player.tscn" id="1_paxwj"]
 [ext_resource type="PackedScene" uid="uid://bradnvknqhod" path="res://scenes/ball.tscn" id="3_71bts"]
 [ext_resource type="PackedScene" uid="uid://bl6003vvbqudr" path="res://scenes/walls.tscn" id="4_gcsko"]
+[ext_resource type="PackedScene" uid="uid://s0h3cc5838qe" path="res://scenes/point_area.tscn" id="5_dhsm8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tiyfs"]
+size = Vector2(10, 648)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2o25x")
+Ball = ExtResource("3_71bts")
 
 [node name="Player1" parent="." instance=ExtResource("1_paxwj")]
 position = Vector2(64, 320)
@@ -15,7 +20,25 @@ position = Vector2(64, 320)
 position = Vector2(1088, 320)
 player_index = 1
 
-[node name="Ball" parent="." instance=ExtResource("3_71bts")]
-position = Vector2(632, 320)
-
 [node name="Walls" parent="." instance=ExtResource("4_gcsko")]
+
+[node name="PointArea" parent="." instance=ExtResource("5_dhsm8")]
+position = Vector2(10, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointArea"]
+position = Vector2(0, 324)
+shape = SubResource("RectangleShape2D_tiyfs")
+
+[node name="PointArea2" parent="." instance=ExtResource("5_dhsm8")]
+position = Vector2(1152, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointArea2"]
+position = Vector2(-10, 324)
+shape = SubResource("RectangleShape2D_tiyfs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
