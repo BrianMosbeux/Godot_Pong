@@ -49,11 +49,10 @@ var start_pos: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	start_pos.x = clamp(screen_size.x * player_index, 12, screen_size.x - 12)
+	start_pos.x = clamp(screen_size.x * player_index, 32, screen_size.x - 32)
 	start_pos.y = screen_size.y / 2
 	position = start_pos
 	create_player_action()
-	print(InputMap.get_actions())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,7 +70,6 @@ func create_player_action():
 	InputMap.add_action(up_action)
 	# Creat a new InputEvent instance to assign to the InputMap.
 	up_action_event = InputEventKey.new()
-	print(keymaps[player_index]["key_up"])
 	up_action_event.keycode = keymaps[player_index]["key_up"]
 	InputMap.action_add_event(up_action, up_action_event)
 	down_action = "p{n}_down".format({"n": player_index})
