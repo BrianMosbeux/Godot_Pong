@@ -40,7 +40,7 @@ var keymaps: Dictionary = {
 			}
 #PHYSICS
 var direction: Vector2 = Vector2.ZERO
-var speed: int = 10000
+var speed: int = 500
 #DISPLAYS
 var screen_size: Vector2
 var start_pos: Vector2
@@ -59,8 +59,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	player_move_input()
-	velocity = direction * speed * delta
-	move_and_slide()
+	velocity = direction * speed
+	position += velocity * delta
 
 func _unhandled_input(event):
 	#print(event)
