@@ -57,7 +57,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	player_move_input()
 	velocity = direction * speed
 	position += velocity * delta
