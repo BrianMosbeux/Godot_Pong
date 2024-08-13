@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://bfon1n72in16y"]
+[gd_scene load_steps=3 format=3 uid="uid://bfon1n72in16y"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_2o25x"]
+[ext_resource type="PackedScene" uid="uid://bggigkxxch4us" path="res://scenes/player.tscn" id="1_paxwj"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_2o25x")
+
+[node name="Player1" parent="." instance=ExtResource("1_paxwj")]
+
+[node name="Player2" parent="." instance=ExtResource("1_paxwj")]
+player_index = 1
