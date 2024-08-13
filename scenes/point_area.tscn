@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://s0h3cc5838qe"]
+[gd_scene load_steps=3 format=3 uid="uid://s0h3cc5838qe"]
 
 [ext_resource type="Script" path="res://scripts/point_area.gd" id="1_5edhw"]
+[ext_resource type="PackedScene" uid="uid://cvxg5dd0rcguq" path="res://scenes/team.tscn" id="2_3v35k"]
 
 [node name="PointArea" type="Area2D"]
 script = ExtResource("1_5edhw")
+
+[node name="Team" parent="." instance=ExtResource("2_3v35k")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfon1n72in16y"]
+[gd_scene load_steps=8 format=3 uid="uid://bfon1n72in16y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_2o25x"]
 [ext_resource type="PackedScene" uid="uid://bggigkxxch4us" path="res://scenes/player.tscn" id="1_paxwj"]
 [ext_resource type="PackedScene" uid="uid://bradnvknqhod" path="res://scenes/ball.tscn" id="3_71bts"]
 [ext_resource type="PackedScene" uid="uid://bl6003vvbqudr" path="res://scenes/walls.tscn" id="4_gcsko"]
 [ext_resource type="PackedScene" uid="uid://s0h3cc5838qe" path="res://scenes/point_area.tscn" id="5_dhsm8"]
+[ext_resource type="PackedScene" uid="uid://4xesrxwdqtv7" path="res://scenes/hud.tscn" id="6_tw70q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tiyfs"]
 size = Vector2(10, 648)
@@ -12,6 +13,17 @@ size = Vector2(10, 648)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_2o25x")
 Ball = ExtResource("3_71bts")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+color = Color(0.992157, 0.603922, 0, 1)
+
+[node name="HUD" parent="." instance=ExtResource("6_tw70q")]
 
 [node name="Player1" parent="." instance=ExtResource("1_paxwj")]
 position = Vector2(64, 320)
@@ -22,10 +34,10 @@ player_index = 1
 
 [node name="Walls" parent="." instance=ExtResource("4_gcsko")]
 
-[node name="PointArea" parent="." instance=ExtResource("5_dhsm8")]
+[node name="PointArea1" parent="." instance=ExtResource("5_dhsm8")]
 position = Vector2(10, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PointArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointArea1"]
 position = Vector2(0, 324)
 shape = SubResource("RectangleShape2D_tiyfs")
 

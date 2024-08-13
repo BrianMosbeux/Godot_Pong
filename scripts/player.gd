@@ -45,6 +45,8 @@ var speed: int = 500
 var screen_size: Vector2
 var start_pos: Vector2
 
+@onready var team = $Team
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

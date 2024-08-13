@@ -2,6 +2,7 @@ extends Area2D
 
 signal point
 
+@onready var team = $Team
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,8 +17,7 @@ func _process(delta):
 
 func _on_body_entered(body):
 	if body.has_method("handle_point"):
-		print("emitting signal")
-		point.emit()
+		point.emit(team)
 		body.handle_point()
 	
 
