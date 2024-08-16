@@ -22,7 +22,7 @@ func _ready():
 	start_pos.y = screen_size.y / 2
 	position = start_pos
 	radius = collision_shape_2d.shape.radius
-	direction = Vector2(randf_range(-1, 1), randf_range(-0.5, 0.5)).normalized()
+	direction = Vector2(randf_range(-1, 1), randf_range(-0.1, 0.1)).normalized()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

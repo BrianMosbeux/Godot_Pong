@@ -21,4 +21,4 @@ func set_player_2_score(score):
 	score_2.text = str(score)
 
 func set_timer_label(time_left):
-	timer_label = str(time_left)
+	timer_label.text = str(time_left)

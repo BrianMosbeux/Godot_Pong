@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 @export var Ball: PackedScene
 
@@ -24,7 +24,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	hud.set_timer_label(timer.time_left)
+	var time_left = timer.time_left
+	var ceil_time_left = ceil(time_left)
+	hud.set_timer_label(ceil_time_left)
 	
 func update_score(team):
 	if team.team == player_1.team.team:
@@ -38,11 +40,13 @@ func update_score(team):
 func start_point():
 	#hud.set_player_1_score()
 	timer.start()
+	hud.timer_label.show()
 	
 	
 
 func _on_timer_timeout():
 	var ball_instance = Ball.instantiate()
+	hud.timer_label.hide()
 	add_child(ball_instance)
 	
 
