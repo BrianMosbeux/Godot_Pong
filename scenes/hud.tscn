@@ -40,6 +40,14 @@ alignment = 1
 
 [node name="TimerLabel" type="Label" parent="MarginContainer/VBoxContainer/MiddleContainer"]
 layout_mode = 2
+text = "3"
+
+[node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/MiddleContainer"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Start
+"
 
 [node name="BottomContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -63,3 +71,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = SubResource("Theme_3cf5v")
 text = "0"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MiddleContainer/StartButton" to="." method="_on_start_button_pressed"]

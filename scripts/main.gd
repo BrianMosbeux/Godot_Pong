@@ -13,20 +13,29 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	start_point()
-	player_1.team.team = 0
-	player_2.team.team = 1
-	point_area_1.team.team = 1
-	point_area_2.team.team = 0
-	point_area_1.connect("point", update_score)
-	point_area_2.connect("point", update_score)
-	
+	hud.connect("start_game", new_game)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var time_left = timer.time_left
 	var ceil_time_left = ceil(time_left)
 	hud.set_timer_label(ceil_time_left)
+
+func new_game():
+	start_point()
+	player_1.team.score = 0
+	player_2.team.score = 0
+	player_1.team.team = 0
+	player_2.team.team = 1
+	hud.set_player_1_score(0)
+	hud.set_player_2_score(0)
+	point_area_1.team.team = 1
+	point_area_2.team.team = 0
+	point_area_1.connect("point", update_score)
+	point_area_2.connect("point", update_score)
+
+func game_over():
+	hud.start_button.show()
 	
 func update_score(team):
 	if team.team == player_1.team.team:
@@ -35,7 +44,10 @@ func update_score(team):
 	else: 
 		player_2.team.score += 1
 		hud.set_player_2_score(player_2.team.score)
-	start_point()
+	if player_1.team.score == 11 or player_2.team.score == 11:
+		game_over()
+	else:
+		start_point()
 	
 func start_point():
 	#hud.set_player_1_score()
@@ -43,7 +55,6 @@ func start_point():
 	hud.timer_label.show()
 	
 	
-
 func _on_timer_timeout():
 	var ball_instance = Ball.instantiate()
 	hud.timer_label.hide()
